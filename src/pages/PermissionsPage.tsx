@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { Shield } from "@phosphor-icons/react";
+
+const PermissionsPage: React.FC = () => {
+  const [permissions, setPermissions] = useState({
+    Dashboard: { L1: true, L2: true, Admin: true },
+    Incidents: { L1: true, L2: true, Admin: true },
+    Tickets: { L1: true, L2: true, Admin: true },
+    Resources: { L1: false, L2: true, Admin: true },
+    Users: { L1: false, L2: false, Admin: true },
+    Permissions: { L1: false, L2: false, Admin: true },
+    Audit: { L1: false, L2: true, Admin: true },
+  });
+
+  const roles = ["L1", "L2", "Admin"];
+  const modules = Object.keys(permissions);
+
+  const toggle = (module: string, role: string) => {
+    setPermissions((prev) => ({
+      ...prev,
+      [module]: { ...prev[module as keyof typeof permissions], [role]: !prev[module as keyof typeof permissions][role as keyof any] },
+    }));
+  };
+
+  return (
+    <div className="space-y-6">
       <div className="flex items-center gap-3">
         <Shield size={24} weight="regular" className="text-foreground" />
         <div>
-          <h1 className="text-2xl font-sans font-medium text-foreground">
-            Permission Matrix
-          </h1>
-          <p className="text-sm text-muted-foreground font-sans mt-1">
-            Configure role-based access control
-          </p>
+          <h1 className="text-2xl font-sans font-medium text-foreground">Permission Matrix</h1>
+          <p className="text-sm text-muted-foreground font-sans mt-1">Configure role-based access control</p>
         </div>
       </div>
 
@@ -16,14 +37,9 @@ import React from "react";
           <table className="w-full" aria-label="Permission matrix">
             <thead>
               <tr className="bg-neutral-100 border-b border-border">
-                <th className="text-left text-xs font-sans font-medium text-muted-foreground uppercase tracking-wide px-6 py-3 w-48">
-                  Module
-                </th>
+                <th className="text-left text-xs font-sans font-medium text-muted-foreground uppercase tracking-wide px-6 py-3 w-48">Module</th>
                 {roles.map((role) => (
-                  <th
-                    key={role}
-                    className="text-center text-xs font-sans font-medium text-muted-foreground uppercase tracking-wide px-6 py-3"
-                  >
+                  <th key={role} className="text-center text-xs font-sans font-medium text-muted-foreground uppercase tracking-wide px-6 py-3">
                     {role}
                   </th>
                 ))}
@@ -31,26 +47,25 @@ import React from "react";
             </thead>
             <tbody className="divide-y divide-border">
               {modules.map((module) => (
-                <tr
-                  key={module}
-                  className="hover:bg-neutral-50 transition-colors duration-150"
-                >
+                <tr key={module} className="hover:bg-neutral-50 transition-colors duration-150">
                   <td className="px-6 py-4">
-                    <span className="text-sm font-sans text-foreground">
-                      {module}
-                    </span>
+                    <span className="text-sm font-sans text-foreground">{module}</span>
                   </td>
                   {roles.map((role) => (
                     <td key={role} className="px-6 py-4 text-center">
                       <button
                         onClick={() => toggle(module, role)}
-                        className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-info focus:ring-offset-1 ${permissions[module][role] ? "bg-success" : "bg-neutral-300"}`}
+                        className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-info focus:ring-offset-1 ${
+                          permissions[module as keyof typeof permissions][role as keyof any] ? "bg-success" : "bg-neutral-300"
+                        }`}
                         role="switch"
-                        aria-checked={permissions[module][role]}
+                        aria-checked={permissions[module as keyof typeof permissions][role as keyof any]}
                         aria-label={`${role} access to ${module}`}
                       >
                         <span
-                          className={`inline-block h-3.5 w-3.5 transform rounded-full bg-neutral-50 transition-transform duration-200 ${permissions[module][role] ? "translate-x-4" : "translate-x-0.5"}`}
+                          className={`inline-block h-3.5 w-3.5 transform rounded-full bg-neutral-50 transition-transform duration-200 ${
+                            permissions[module as keyof typeof permissions][role as keyof any] ? "translate-x-4" : "translate-x-0.5"
+                          }`}
                         />
                       </button>
                     </td>
@@ -67,7 +82,7 @@ import React from "react";
           Save Permissions
         </button>
       </div>
-    </div >
+    </div>
   );
 };
 

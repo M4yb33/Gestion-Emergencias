@@ -1,6 +1,6 @@
 import React from "react";
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import KPICard from "../components/shared/KPICard";
+import { KPICard } from "../components/shared/KPICard";
 
 const CHART_COLORS = ["#ef4444", "#f97316", "#eab308", "#22c55e", "#3b82f6", "#8b5cf6"];
 
@@ -22,6 +22,13 @@ const AnalyticsPage: React.FC = () => {
     { name: "Security", value: 15, fill: "#22c55e" },
   ];
 
+  const resourceData = [
+    { label: "Disponibles", available: 18 },
+    { label: "En ruta", available: 8 },
+    { label: "En servicio", available: 12 },
+    { label: "Mantenimiento", available: 4 },
+  ];
+
   return (
     <div className="space-y-6">
       <div>
@@ -30,10 +37,10 @@ const AnalyticsPage: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <KPICard data={{ label: "Total Incidents", value: "347", trend: 12, trendLabel: "vs semana pasada", color: "error" }} />
-        <KPICard data={{ label: "Active Tickets", value: "28", trend: 5, trendLabel: "cambio diario", color: "warning" }} />
-        <KPICard data={{ label: "Resources", value: "42", trend: -3, trendLabel: "disponibilidad", color: "info" }} />
-        <KPICard data={{ label: "Avg Response", value: "4.2m", trend: -1, trendLabel: "mejora", color: "success" }} />
+        <KPICard title="Total Incidents" value="347" change="+12%" icon="🚨" />
+        <KPICard title="Active Tickets" value="28" change="+5%" icon="🎫" />
+        <KPICard title="Resources" value="42" change="-3%" icon="🚑" />
+        <KPICard title="Avg Response" value="4.2m" change="-0.8m" icon="⏱️" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -57,8 +64,8 @@ const AnalyticsPage: React.FC = () => {
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie data={categoryData} cx="50%" cy="50%" labelLine={false} label={{ fontSize: 12, fill: "#374151" }} outerRadius={100} fill="#8884d8" dataKey="value">
-                {categoryData.map((cat, idx) => (
-                  <Cell key={`cell-${idx}`} fill={CHART_COLORS[idx % CHART_COLORS.length]} />
+                {categoryData.map((_, index) => (
+                  <Cell key={index} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                 ))}
               </Pie>
               <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px" }} />
@@ -77,8 +84,8 @@ const AnalyticsPage: React.FC = () => {
               <YAxis stroke="#9ca3af" style={{ fontSize: "12px" }} />
               <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px" }} />
               <Bar dataKey="value" fill="#3b82f6" radius={[8, 8, 0, 0]}>
-                {categoryData.map((cat, idx) => (
-                  <Cell key={`bar-${idx}`} fill={CHART_COLORS[idx % CHART_COLORS.length]} />
+                {categoryData.map((_, index) => (
+                  <Cell key={index} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                 ))}
               </Bar>
             </BarChart>
