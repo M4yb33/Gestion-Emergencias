@@ -1,6 +1,31 @@
 import React, { useState, useEffect } from "react";
-    }
-  }, [currentUser]);
+import { useAppContext, AppProvider } from "./context/AppContext";
+import DashboardLayout from "./components/layout/DashboardLayout";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import TicketsPage from "./pages/TicketsPage";
+import TicketDetailPage from "./pages/TicketDetailPage";
+import IncidentsPage from "./pages/IncidentsPage";
+import MapPage from "./pages/MapPage";
+import ResourcesPage from "./pages/ResourcesPage";
+import UsersPage from "./pages/UsersPage";
+import CentersPage from "./pages/CentersPage";
+import AuditPage from "./pages/AuditPage";
+import PermissionsPage from "./pages/PermissionsPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import MobileApp from "./pages/mobile/MobileApp";
+
+const AppContent: React.FC = () => {
+    const { currentUser } = useAppContext();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isCitizenMode, setIsCitizenMode] = useState(false);
+    const [currentPath, setCurrentPath] = useState("/dashboard");
+
+    useEffect(() => {
+        if (!currentUser) {
+            setIsLoggedIn(false);
+        }
+    }, [currentUser]);
 
 const handleNavigate = (path: string) => {
     setCurrentPath(path);
