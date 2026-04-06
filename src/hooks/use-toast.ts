@@ -1,13 +1,13 @@
 // Inspired by react-hot-toast library
-        return {
-          ...state,
-          toasts: [],
-        }
+return {
+    ...state,
+    toasts: [],
+}
       }
-      return {
-        ...state,
-        toasts: state.toasts.filter((t) => t.id !== action.toastId),
-      }
+return {
+    ...state,
+    toasts: state.toasts.filter((t) => t.id !== action.toastId),
+}
   }
 }
 
@@ -16,61 +16,61 @@ const listeners: Array<(state: State) => void> = []
 let memoryState: State = { toasts: [] }
 
 function dispatch(action: Action) {
-  memoryState = reducer(memoryState, action)
-  listeners.forEach((listener) => {
-    listener(memoryState)
-  })
+    memoryState = reducer(memoryState, action)
+    listeners.forEach((listener) => {
+        listener(memoryState)
+    })
 }
 
 type Toast = Omit<ToasterToast, "id">
 
 function toast({ ...props }: Toast) {
-  const id = genId()
+    const id = genId()
 
-  const update = (props: ToasterToast) =>
+    const update = (props: ToasterToast) =>
+        dispatch({
+            type: "UPDATE_TOAST",
+            toast: { ...props, id },
+        })
+    const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
+
     dispatch({
-      type: "UPDATE_TOAST",
-      toast: { ...props, id },
+        type: "ADD_TOAST",
+        toast: {
+            ...props,
+            id,
+            open: true,
+            onOpenChange: (open) => {
+                if (!open) dismiss()
+            },
+        },
     })
-  const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
 
-  dispatch({
-    type: "ADD_TOAST",
-    toast: {
-      ...props,
-      id,
-      open: true,
-      onOpenChange: (open) => {
-        if (!open) dismiss()
-      },
-    },
-  })
-
-  return {
-    id: id,
-    dismiss,
-    update,
-  }
+    return {
+        id: id,
+        dismiss,
+        update,
+    }
 }
 
 function useToast() {
-  const [state, setState] = React.useState<State>(memoryState)
+    const [state, setState] = React.useState<State>(memoryState)
 
-  React.useEffect(() => {
-    listeners.push(setState)
-    return () => {
-      const index = listeners.indexOf(setState)
-      if (index > -1) {
-        listeners.splice(index, 1)
-      }
+    React.useEffect(() => {
+        listeners.push(setState)
+        return () => {
+            const index = listeners.indexOf(setState)
+            if (index > -1) {
+                listeners.splice(index, 1)
+            }
+        }
+    }, [state])
+
+    return {
+        ...state,
+        toast,
+        dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
     }
-  }, [state])
-
-  return {
-    ...state,
-    toast,
-    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
-  }
 }
 
 export { useToast, toast }

@@ -5,15 +5,15 @@ import L2Dashboard from "../components/dashboards/L2Dashboard";
 import AdminDashboard from "../components/dashboards/AdminDashboard";
 
 interface DashboardPageProps {
-  onNavigate: (path: string) => void;
+    onNavigate: (path: string) => void;
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
-  const { activeRole } = useAppContext();
+    const { activeRole } = useAppContext();
 
-  if (activeRole === "L1") return <L1Dashboard onNavigate={onNavigate} />;
-  if (activeRole === "L2") return <L2Dashboard onNavigate={onNavigate} />;
-  return <AdminDashboard onNavigate={onNavigate} />;
+    if (activeRole === "L1") return <L1Dashboard onNavigate={onNavigate} />;
+    if (activeRole === "L2") return <L2Dashboard onNavigate={onNavigate} />;
+    return <AdminDashboard onNavigate={onNavigate} />;
 };
 
 export default DashboardPage;

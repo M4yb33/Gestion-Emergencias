@@ -54,21 +54,23 @@ import React, { useState } from "react";
               </tr>
             ))}
           </tbody>
-        </table>
-        {filtered.length === 0 && (
-          <div className="py-16 text-center">
+        </table >
+{
+    filtered.length === 0 && (
+        <div className="py-16 text-center">
             <ClipboardText
-              size={32}
-              weight="regular"
-              className="text-muted-foreground mx-auto mb-2"
+                size={32}
+                weight="regular"
+                className="text-muted-foreground mx-auto mb-2"
             />
             <p className="text-muted-foreground font-sans text-sm">
-              No audit entries found.
+                No audit entries found.
             </p>
-          </div>
-        )}
-      </div>
-    </div>
+        </div>
+    )
+}
+      </div >
+    </div >
   );
 };
 

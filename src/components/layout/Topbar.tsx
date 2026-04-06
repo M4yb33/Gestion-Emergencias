@@ -50,10 +50,10 @@ import React, { useState } from "react";
                 Sign Out
               </button>
             </div>
-          </div>
+          </div >
         )}
-      </div>
-    </header>
+      </div >
+    </header >
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-                  onKeyDown={(e) =>
-                    e.key === "Enter" && onNavigate(`/tickets/${ticket.id}`)
+onKeyDown = {(e) =>
+e.key === "Enter" && onNavigate(`/tickets/${ticket.id}`)
                   }
-                  aria-label={`Ticket ${ticket.id}: ${ticket.title}`}
+aria - label={ `Ticket ${ticket.id}: ${ticket.title}` }
                 >
                   <td className="px-4 py-4">
                     <span className="text-xs font-mono text-muted-foreground">
@@ -49,20 +49,22 @@ import React, { useState } from "react";
                       className="text-muted-foreground"
                     />
                   </td>
-                </tr>
+                </tr >
               ))}
-            </tbody>
-          </table>
-        </div>
-        {filtered.length === 0 && (
-          <div className="py-16 text-center">
+            </tbody >
+          </table >
+        </div >
+{
+    filtered.length === 0 && (
+        <div className="py-16 text-center">
             <p className="text-muted-foreground font-sans text-sm">
-              No tickets match your filters.
+                No tickets match your filters.
             </p>
-          </div>
-        )}
-      </div>
-    </div>
+        </div>
+    )
+}
+      </div >
+    </div >
   );
 };
 

@@ -1,16 +1,16 @@
 import React from "react";
-            { icon: "🎁", label: "Incentivos", screen: "incentives" as const },
+{ icon: "🎁", label: "Incentivos", screen: "incentives" as const },
           ].map((item) => (
-            <button
-              key={item.label}
-              onClick={() => navigate(item.screen)}
-              className="bg-white rounded-2xl p-3.5 flex flex-col items-center gap-2 cursor-pointer hover:shadow-md transition-shadow border border-neutral-100"
-            >
-              <span className="text-2xl">{item.icon}</span>
-              <span className="text-xs font-medium text-neutral-700 font-sans text-center leading-tight">{item.label}</span>
-            </button>
-          ))}
-        </div>
+    <button
+        key={item.label}
+        onClick={() => navigate(item.screen)}
+        className="bg-white rounded-2xl p-3.5 flex flex-col items-center gap-2 cursor-pointer hover:shadow-md transition-shadow border border-neutral-100"
+    >
+        <span className="text-2xl">{item.icon}</span>
+        <span className="text-xs font-medium text-neutral-700 font-sans text-center leading-tight">{item.label}</span>
+    </button>
+))}
+        </div >
 
         <div className="mb-2">
           <div className="flex items-center justify-between mb-3">
@@ -55,10 +55,10 @@ import React from "react";
           </div>
           <span className="text-green-600 text-xs font-sans">→</span>
         </button>
-      </div>
+      </div >
 
-      <MobileBottomNav active="dashboard" navigate={navigate} />
-    </div>
+    <MobileBottomNav active="dashboard" navigate={navigate} />
+    </div >
   );
 };
 

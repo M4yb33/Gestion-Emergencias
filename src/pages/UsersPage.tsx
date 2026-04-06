@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-            </h2>
+            </h2 >
             <div className="space-y-4">
               {[
                 { label: "Full Name", type: "text", placeholder: "John Doe" },
@@ -75,10 +75,10 @@ import React, { useState } from "react";
                 Create User
               </button>
             </div>
-          </div>
-        </div>
+          </div >
+        </div >
       )}
-    </div>
+    </div >
   );
 };
 

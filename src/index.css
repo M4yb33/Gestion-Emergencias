@@ -1,59 +1,63 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+Pro:wght@400;600&display=swap");
-  --color-border: hsl(0, 0%, 90%);
-  --font-sans: "DM Sans", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+--color-border: hsl(0, 0%, 90%);
+--font-sans: "DM Sans",
+sans-serif;
+--font-mono: "IBM Plex Mono",
+monospace;
 }
 
 html,
 body {
-  color: hsl(220, 15%, 20%);
-  background-color: hsl(0, 0%, 98%);
-  font-family: "DM Sans", sans-serif;
+    color: hsl(220, 15%, 20%);
+    background-color: hsl(0, 0%, 98%);
+    font-family: "DM Sans", sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .sidebar-transition {
-  transition: width 250ms ease-in-out;
+    transition: width 250ms ease-in-out;
 }
 
 .fade-in {
-  animation: fadeIn 150ms ease-in forwards;
+    animation: fadeIn 150ms ease-in forwards;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .slide-in-right {
-  animation: slideInRight 200ms ease-in-out forwards;
+    animation: slideInRight 200ms ease-in-out forwards;
 }
 
 @keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .accordion-content {
-  transition: height 200ms ease-in-out;
+    transition: height 200ms ease-in-out;
 }
 
 :focus-visible {
-  outline: 2px solid hsl(205, 90%, 45%);
-  outline-offset: 2px;
+    outline: 2px solid hsl(205, 90%, 45%);
+    outline-offset: 2px;
 }

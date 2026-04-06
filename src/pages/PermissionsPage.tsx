@@ -67,7 +67,7 @@ import React from "react";
           Save Permissions
         </button>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-            onClick={() => setScene(s.key)}
-            className={`flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-medium font-sans cursor-pointer transition-colors ${
-              scene === s.key ? "bg-[#075e54] text-white" : "bg-white/60 text-neutral-700 hover:bg-white"
-            }`}
+onClick = {() => setScene(s.key)}
+className = {`flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] font-medium font-sans cursor-pointer transition-colors ${scene === s.key ? "bg-[#075e54] text-white" : "bg-white/60 text-neutral-700 hover:bg-white"
+    }`}
           >
-            {s.label}
-          </button>
+    { s.label }
+          </button >
         ))}
-      </div>
+      </div >
 
       <div className="flex-1 px-3 py-3 space-y-2 overflow-y-auto">
         {botMessages[scene].map((msg, i) => (
@@ -56,7 +55,7 @@ import React, { useState } from "react";
           <PaperPlaneTilt size={16} weight="fill" className="text-white" />
         </button>
       </div>
-    </div>
+    </div >
   );
 };
 

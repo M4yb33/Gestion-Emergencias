@@ -55,7 +55,7 @@ import React, { useState } from "react";
           disabled={!selected || !risk || !desc}
         />
       </div>
-    </div>
+    </div >
   );
 };
 
