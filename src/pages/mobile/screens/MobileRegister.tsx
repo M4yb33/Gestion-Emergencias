@@ -37,9 +37,12 @@ const MobileRegister: React.FC<ScreenProps> = ({ navigate }) => {
                 </div>
                 <p className="text-center text-xs text-neutral-500 font-sans">
                     ¿Ya tienes cuenta?{" "}
-                    <span className="text-primary font-medium cursor-pointer" onClick={() => navigate("login")}>
+                    <button
+                      className="text-primary font-medium cursor-pointer hover:underline bg-transparent border-0 p-0 m-0"
+                      onClick={() => navigate("login")}
+                    >
                         Inicia sesión
-                    </span>
+                    </button>
                 </p>
             </div>
         </div>

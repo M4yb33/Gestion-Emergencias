@@ -47,8 +47,8 @@ const MobileEvidence: React.FC<ScreenProps> = ({ navigate }) => {
                             <span className="bg-primary text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">{files.length}</span>
                         </div>
                         <div className="space-y-2">
-                            {files.map((f, i) => (
-                                <div key={i} className="bg-neutral-50 border border-neutral-200 rounded-xl p-3 flex items-center gap-3">
+                            {files.map((f) => (
+                                <div key={f.name} className="bg-neutral-50 border border-neutral-200 rounded-xl p-3 flex items-center gap-3">
                                     <div className="w-8 h-8 bg-neutral-200 rounded-lg flex items-center justify-center flex-shrink-0">
                                         {f.type === "image" ? <Image size={16} className="text-neutral-500" /> : <File size={16} className="text-neutral-500" />}
                                     </div>

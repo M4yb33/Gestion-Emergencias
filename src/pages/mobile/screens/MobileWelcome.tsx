@@ -1,7 +1,6 @@
 import React from "react";
 import { Shield, Bell, MapPin, CheckCircle } from "@phosphor-icons/react";
-import { ScreenProps } from "../MobileShared";
-import { MobilePrimaryBtn } from "../MobileShared";
+import { ScreenProps, MobilePrimaryBtn } from "../MobileShared";
 
 const MobileWelcome: React.FC<ScreenProps> = ({ navigate }) => {
     return (
@@ -21,11 +20,11 @@ const MobileWelcome: React.FC<ScreenProps> = ({ navigate }) => {
                     </p>
                     <div className="space-y-3 w-full text-left mb-2">
                         {[
-                            { icon: <Bell size={14} />, text: "Reporta incidentes en segundos" },
-                            { icon: <MapPin size={14} />, text: "Ubicación GPS automática" },
-                            { icon: <CheckCircle size={14} />, text: "Seguimiento en tiempo real" },
-                        ].map((f, i) => (
-                            <div key={i} className="flex items-center gap-3">
+                            { id: "feature-1", icon: <Bell size={14} />, text: "Reporta incidentes en segundos" },
+                            { id: "feature-2", icon: <MapPin size={14} />, text: "Ubicación GPS automática" },
+                            { id: "feature-3", icon: <CheckCircle size={14} />, text: "Seguimiento en tiempo real" },
+                        ].map((f) => (
+                            <div key={f.id} className="flex items-center gap-3">
                                 <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-white/80 flex-shrink-0">
                                     {f.icon}
                                 </div>

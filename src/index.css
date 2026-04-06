@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+Pro:wght@400;600&display=swap");
---color-border: hsl(0, 0%, 90%);
---font-sans: "DM Sans",
-sans-serif;
---font-mono: "IBM Plex Mono",
-monospace;
+
+:root {
+    --color-border: hsl(0, 0%, 90%);
+    --font-sans: "DM Sans", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
 }
 
 html,

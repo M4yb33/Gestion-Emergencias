@@ -1,5 +1,5 @@
 import React from "react";
-import { QrCode, Clock, CheckCircle } from "@phosphor-icons/react";
+import { QrCode, Clock } from "@phosphor-icons/react";
 import { ScreenProps, MobileHeader, MobileBottomNav } from "../MobileShared";
 
 const vouchers = [

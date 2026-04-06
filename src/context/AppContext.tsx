@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import { UserRole, User } from "../types";
-import { mockUsers } from "../data/mockData";
 
 interface AppContextType {
     currentUser: User | null;
@@ -20,17 +19,20 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const [activeRole, setActiveRole] = useState<UserRole>("L1");
 
+    const contextValue = useMemo(
+      () => ({
+        currentUser,
+        setCurrentUser,
+        sidebarCollapsed,
+        setSidebarCollapsed,
+        activeRole,
+        setActiveRole,
+      }),
+      [currentUser, sidebarCollapsed, activeRole]
+    );
+
     return (
-        <AppContext.Provider
-            value={{
-                currentUser,
-                setCurrentUser,
-                sidebarCollapsed,
-                setSidebarCollapsed,
-                activeRole,
-                setActiveRole,
-            }}
-        >
+        <AppContext.Provider value={contextValue}>
             {children}
         </AppContext.Provider>
     );

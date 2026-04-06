@@ -9,6 +9,18 @@ const timeline = [
     { state: "Cerrado", time: "Pendiente", done: false, active: false },
 ];
 
+const getStatusBgClass = (timelineItem: typeof timeline[0]): string => {
+  if (timelineItem.active) return "bg-primary border-primary";
+  if (timelineItem.done) return "bg-success border-success";
+  return "bg-white border-neutral-300";
+};
+
+const getStatusTextClass = (timelineItem: typeof timeline[0]): string => {
+  if (timelineItem.active) return "text-primary";
+  if (timelineItem.done) return "text-neutral-800";
+  return "text-neutral-400";
+};
+
 const MobileReportDetail: React.FC<ScreenProps> = ({ navigate }) => {
     return (
         <div className="flex flex-col min-h-[700px]">
@@ -49,12 +61,11 @@ const MobileReportDetail: React.FC<ScreenProps> = ({ navigate }) => {
                     <div className="space-y-3">
                         {timeline.map((t) => (
                             <div key={t.state} className="flex items-center gap-3">
-                                <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 ${t.active ? "bg-primary border-primary" : t.done ? "bg-success border-success" : "bg-white border-neutral-300"
-                                    }`}>
+                                <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 ${getStatusBgClass(t)}`}>
                                     {(t.done || t.active) && <span className="text-white text-[8px] font-bold">✓</span>}
                                 </div>
                                 <div className="flex-1">
-                                    <p className={`text-xs font-medium font-sans ${t.active ? "text-primary" : t.done ? "text-neutral-800" : "text-neutral-400"}`}>{t.state}</p>
+                                    <p className={`text-xs font-medium font-sans ${getStatusTextClass(t)}`}>{t.state}</p>
                                     <p className="text-[10px] text-neutral-400 font-sans">{t.time}</p>
                                 </div>
                                 {t.active && <span className="bg-primary/10 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full font-sans">Actual</span>}

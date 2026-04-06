@@ -17,16 +17,11 @@ const ContextDrawer: React.FC<ContextDrawerProps> = ({
     if (!open) return null;
 
     return (
-        <div
-            className="fixed inset-0 z-50 flex justify-end"
-            role="dialog"
-            aria-modal="true"
-            aria-label={title}
-        >
-            <div
+        <div className="fixed inset-0 z-50 flex justify-end">
+            <button
                 className="absolute inset-0 bg-neutral-900 bg-opacity-50"
                 onClick={onClose}
-                aria-hidden="true"
+                aria-label="Close drawer"
             />
             <div className="relative w-full max-w-lg bg-card border-l border-border h-full flex flex-col slide-in-right">
                 <div className="flex items-center justify-between px-6 py-4 border-b border-border">

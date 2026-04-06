@@ -9,6 +9,22 @@ const steps = [
     { label: "Cerrado", desc: "Incidente resuelto y documentado", time: "—", done: false, active: false },
 ];
 
+const getStepBgClass = (step: typeof steps[0]): string => {
+  if (step.active) return "bg-primary border-primary";
+  if (step.done) return "bg-success border-success";
+  return "bg-white border-neutral-300";
+};
+
+const getStepTextClass = (step: typeof steps[0]): string => {
+  if (step.active) return "text-primary";
+  return "text-neutral-700";
+};
+
+const getStepOpacity = (step: typeof steps[0]): string => {
+  if (step.done || step.active) return "";
+  return "opacity-40";
+};
+
 const MobileTracking: React.FC<ScreenProps> = ({ navigate }) => {
     return (
         <div className="flex flex-col min-h-[700px]">
@@ -27,15 +43,14 @@ const MobileTracking: React.FC<ScreenProps> = ({ navigate }) => {
                 <div className="relative">
                     <div className="absolute left-[11px] top-0 bottom-0 w-0.5 bg-neutral-200" />
                     <div className="space-y-5">
-                        {steps.map((step, i) => (
+                        {steps.map((step) => (
                             <div key={step.label} className="flex gap-4 relative">
-                                <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 z-10 ${step.active ? "bg-primary border-primary" : step.done ? "bg-success border-success" : "bg-white border-neutral-300"
-                                    }`}>
+                                <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 z-10 ${getStepBgClass(step)}`}>
                                     {(step.done || step.active) && <span className="text-white text-[8px] font-bold">✓</span>}
                                 </div>
-                                <div className={`flex-1 pb-1 ${step.done || step.active ? "" : "opacity-40"}`}>
+                                <div className={`flex-1 pb-1 ${getStepOpacity(step)}`}>
                                     <div className="flex items-center justify-between mb-0.5">
-                                        <p className={`text-xs font-semibold font-sans ${step.active ? "text-primary" : "text-neutral-700"}`}>{step.label}</p>
+                                        <p className={`text-xs font-semibold font-sans ${getStepTextClass(step)}`}>{step.label}</p>
                                         <p className="text-[10px] text-neutral-400 font-mono">{step.time}</p>
                                     </div>
                                     <p className="text-[10px] text-neutral-500 font-sans">{step.desc}</p>

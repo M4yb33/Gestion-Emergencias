@@ -1,5 +1,5 @@
 import React from "react";
-import { WhatsappLogo, QrCode, CheckCircle, ArrowRight } from "@phosphor-icons/react";
+import { WhatsappLogo, QrCode, CheckCircle } from "@phosphor-icons/react";
 import { ScreenProps, MobileHeader, MobilePrimaryBtn } from "../MobileShared";
 
 const MobileWhatsApp: React.FC<ScreenProps> = ({ navigate }) => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MapPin, FunnelSimple } from "@phosphor-icons/react";
+import { MapPin } from "@phosphor-icons/react";
 import { ScreenProps, MobileHeader, MobileStatusBadge, MobileBottomNav } from "../MobileShared";
 
 const reports = [

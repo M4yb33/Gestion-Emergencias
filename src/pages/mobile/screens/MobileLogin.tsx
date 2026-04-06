@@ -23,19 +23,22 @@ const MobileLogin: React.FC<ScreenProps> = ({ navigate }) => {
                 <MobileInput label="Correo o teléfono" placeholder="correo@ejemplo.com" value={email} onChange={setEmail} required />
                 <MobileInput label="Contraseña" type="password" placeholder="••••••••" value={password} onChange={setPassword} required />
                 <div className="text-right">
-                    <span
-                        className="text-xs text-primary font-medium cursor-pointer hover:underline font-sans"
-                        onClick={() => navigate("forgot")}
+                    <button
+                      className="text-xs text-primary font-medium cursor-pointer hover:underline font-sans bg-transparent border-0 p-0 m-0"
+                      onClick={() => navigate("forgot")}
                     >
                         ¿Olvidaste tu contraseña?
-                    </span>
+                    </button>
                 </div>
                 <MobilePrimaryBtn label="Iniciar sesión" onClick={() => navigate("dashboard")} />
                 <p className="text-center text-xs text-neutral-500 font-sans">
                     ¿Sin cuenta aún?{" "}
-                    <span className="text-primary font-medium cursor-pointer" onClick={() => navigate("register")}>
+                    <button
+                      className="text-primary font-medium cursor-pointer hover:underline bg-transparent border-0 p-0 m-0"
+                      onClick={() => navigate("register")}
+                    >
                         Regístrate aquí
-                    </span>
+                    </button>
                 </p>
             </div>
         </div>

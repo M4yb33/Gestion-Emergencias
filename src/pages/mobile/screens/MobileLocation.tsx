@@ -19,10 +19,22 @@ const MobileLocation: React.FC<ScreenProps> = ({ navigate, reportData }) => {
                 <div className="mx-5 rounded-2xl overflow-hidden border border-neutral-200 mb-4 bg-neutral-100 relative" style={{ height: 220 }}>
                     <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center relative">
                         <div className="absolute inset-0">
-                            {[...Array(8)].map((_, i) => (
-                                <div key={i} className={`absolute border-neutral-300/60 ${i % 2 === 0 ? "border-t w-full" : "border-l h-full"}`}
-                                    style={{ top: i % 2 === 0 ? `${(i / 2 + 1) * 14}%` : "0", left: i % 2 !== 0 ? `${(Math.floor(i / 2) + 1) * 20}%` : "0" }} />
-                            ))}
+                            {Array.from({ length: 8 }).map((_, i) => {
+                              const isHorizontal = i % 2 === 0;
+                              const uniqueId = `${isHorizontal ? "h" : "v"}-${Math.floor(i / 2)}`;
+                              return (
+                                <div
+                                  key={uniqueId}
+                                  className={`absolute border-neutral-300/60 ${
+                                    isHorizontal ? "border-t w-full" : "border-l h-full"
+                                  }`}
+                                  style={{
+                                    top: isHorizontal ? `${(i / 2 + 1) * 14}%` : "0",
+                                    left: isHorizontal ? "0" : `${(Math.floor(i / 2) + 1) * 20}%`,
+                                  }}
+                                />
+                              );
+                            })}
                         </div>
                         <div className="relative z-10 flex flex-col items-center gap-1">
                             <div className="w-10 h-10 bg-error rounded-full flex items-center justify-center border-4 border-white shadow-lg">

@@ -31,6 +31,18 @@ const colorMap: Record<string, { bg: string; text: string; border: string }> = {
     },
 };
 
+const getTrendClassName = (trendPositive: boolean, trendNeutral: boolean): string => {
+  if (trendNeutral) return "bg-neutral-200 text-neutral-700";
+  if (trendPositive) return "bg-success text-neutral-50";
+  return "bg-error text-neutral-50";
+};
+
+const getTrendIcon = (trendPositive: boolean, trendNeutral: boolean): React.ReactNode => {
+  if (trendNeutral) return <Minus size={12} weight="regular" />;
+  if (trendPositive) return <TrendUp size={12} weight="regular" />;
+  return <TrendDown size={12} weight="regular" />;
+};
+
 const KPICard: React.FC<KPICardProps> = ({ data }) => {
     const colors = colorMap[data.color] || colorMap.info;
     const trendPositive = data.trend > 0;
@@ -49,20 +61,9 @@ const KPICard: React.FC<KPICardProps> = ({ data }) => {
                     {data.value}
                 </span>
                 <div
-                    className={`flex items-center gap-1 text-xs font-sans px-2 py-1 rounded-md ${trendNeutral
-                            ? "bg-neutral-200 text-neutral-700"
-                            : trendPositive
-                                ? "bg-success text-neutral-50"
-                                : "bg-error text-neutral-50"
-                        }`}
+                    className={`flex items-center gap-1 text-xs font-sans px-2 py-1 rounded-md ${getTrendClassName(trendPositive, trendNeutral)}`}
                 >
-                    {trendNeutral ? (
-                        <Minus size={12} weight="regular" />
-                    ) : trendPositive ? (
-                        <TrendUp size={12} weight="regular" />
-                    ) : (
-                        <TrendDown size={12} weight="regular" />
-                    )}
+                    {getTrendIcon(trendPositive, trendNeutral)}
                     <span>{Math.abs(data.trend)}</span>
                 </div>
             </div>
